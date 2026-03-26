@@ -1,5 +1,6 @@
 import numpy as np
 
+intom = 0.0254      #m/in
 
 #---------------------
 # weights (1.cI)
@@ -21,7 +22,7 @@ wing_group_W = np.array([W_w, W_p, W_mg])
 print("fuselage:", sum(fus_group_W))
 print("wing:", sum(wing_group_W))
 
-lemac = 22.866
+lemac = (900.257 - 144)*intom      #m
 #---------------------------------------
 # locations wrt nose for fuselage group
 #---------------------------------------
