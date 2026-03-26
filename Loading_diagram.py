@@ -32,8 +32,8 @@ x_aft = ((((W_empty * CG) + (W_aft * l_aft)) / (W_empty + W_aft)) - lemac) / mac
 x_forward = ((((W_empty * CG) + (W_forward * l_forward)) / (W_empty + W_forward)) - lemac)/mac
 x_both = ((((W_empty * CG) + (W_forward * l_forward) + (W_aft * l_aft)) / (W_empty + W_forward + W_aft)) - lemac)/mac
 print(x_aft, x_forward)
-plt.plot([x_empty, x_forward],[W_empty, W_empty+W_forward])
-plt.plot([x_empty, x_aft],[W_empty, W_empty+W_aft])
-plt.plot([x_forward, x_both], [W_empty+W_forward, W_empty+W_both])
-plt.plot([x_aft, x_both], [W_empty+W_aft, W_empty+W_both])
+plt.plot([x_empty, x_forward],[W_empty, W_empty+W_forward], '-o')
+plt.plot([x_empty, x_aft],[W_empty, W_empty+W_aft], '-o')
+plt.plot([x_forward, x_both], [W_empty+W_forward, W_empty+W_both], '-o')
+plt.plot([x_aft, x_both], [W_empty+W_aft, W_empty+W_both], '-o')
 plt.show()
