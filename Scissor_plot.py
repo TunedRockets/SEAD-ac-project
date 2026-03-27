@@ -1,24 +1,28 @@
 import matplotlib.pyplot as plt
-from CG_calculations import CG, lemac
+from CG_calculations import CG, lemac, l_h
 from Loading_diagram import mac
 
 # all values are made up
 
 #wing
-x_ac = lemac
-C_L_a = 1
-C_L_alpha_a = 1
+x_ac = lemac + 0.25*mac
+S = 77.4
+W_cruise = 38000
+V_cruise = 242
+C_L_a = W_cruise/(0.5*1*V_cruise**2*S)
+C_L_alpha_a = 1.5
 
 #tail
-x_ac_h = 37
+V_h_V = 0.9
+S_h = 15.9
+x_ac_h = l_h + 0.25*4.04
 l_h = x_ac_h - x_ac
-C_L_h = 1
-C_L_alpha_h = 1
+C_L_h = W_cruise/(0.5*1*(V_h_V*V_cruise)**2*S_h)
+C_L_alpha_h = 1.5
 
 
-V_h_V = 1
-C_m_ac = 1
-deps_dalpha = 1
+C_m_ac = -1
+deps_dalpha = 0.4
 SM = 0.1
 
 S_h_S = [1,2,3,4]
