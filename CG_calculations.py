@@ -19,8 +19,8 @@ W_c = 0.023*EOW # cockpit weight
 fus_group_W = np.array([W_h, W_v, W_f, W_ng, W_c, W_p])
 wing_group_W = np.array([W_w, W_mg])
 
-print("fuselage:", sum(fus_group_W))
-print("wing:", sum(wing_group_W))
+#print("fuselage:", sum(fus_group_W))
+#print("wing:", sum(wing_group_W))
 
 lemac = (900.257 - 144)*intom      #m
 #---------------------------------------
@@ -49,8 +49,8 @@ CG_wing = np.dot(wing_group_W, wing_group_l)/sum(wing_group_W)
 CG_fus = np.dot(fus_group_W, fus_group_l)/sum(fus_group_W)
 
 
-print("CG wing:", CG_wing)
-print("CG fuselage:", CG_fus)
+#print("CG wing:", CG_wing)
+#print("CG fuselage:", CG_fus)
 
 CG = (np.dot(wing_group_W, (wing_group_l+lemac)) + np.dot(fus_group_W, fus_group_l))/(sum(wing_group_W)+sum(fus_group_W))
-print(CG)
+#print(CG)
