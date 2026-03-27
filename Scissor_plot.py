@@ -4,16 +4,17 @@ from Loading_diagram import mac
 
 # all values are made up
 
+#wing
+x_ac = lemac
+C_L_a = 1
+C_L_alpha_a = 1
+
 #tail
 x_ac_h = 37
 l_h = x_ac_h - x_ac
 C_L_h = 1
 C_L_alpha_h = 1
 
-#wing
-x_ac = lemac
-C_L_a = 1
-C_L_alpha_a = 1
 
 V_h_V = 1
 C_m_ac = 1
