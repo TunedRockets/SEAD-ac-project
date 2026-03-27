@@ -58,10 +58,39 @@ for n in range(24):
 
 
 
+x_aisle = []
+w_aisle = []
+x_aisle_two = []
+w_aisle_two = []
+w_n_init = np.copy(w_n)
+M_n_init = np.copy(M_n)
+for n in range(24):
+    l_n = l_1 + 0.8*n # 0.8 space per row
+    w_n = w_n_init + W_pas*2*n
+    M_n = M_n + 2*W_pas*l_n
+    x_n = (M_n/w_n)
+    x_aisle.append(x_n)
+    w_aisle.append(w_n)
+
+
+M_n = M_n_init
+l_n = l_n + 0.8
+for n in range(24):
+    l_n = l_n - 0.8 # 0.8 space per row
+    w_n = w_n_init + W_pas*2*n
+    M_n = M_n + 2*W_pas*l_n
+    x_n = (M_n/w_n)
+    x_aisle_two.append(x_n)
+    w_aisle_two.append(w_n)
+
+
+
 
 
 
 plt.plot([x_forward, x_empty, x_aft, x_both, x_forward], [W_forward+W_empty, W_empty, W_aft+W_empty, W_both+W_empty, W_forward+W_empty], '-o', color='deeppink')
 plt.scatter(x_window, w_window)
 plt.scatter(x_window_two, w_window_two)
+plt.scatter(x_aisle, w_aisle)
+plt.scatter(x_aisle_two, w_aisle_two)
 plt.show()
