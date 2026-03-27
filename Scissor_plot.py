@@ -33,15 +33,16 @@ X_cg3 = []
 
 for s in S_h_S:
 
-    X_cg1.append(((x_ac - C_m_ac/C_L_a + C_L_h/C_L_a *(s*l_h/mac)*V_h_V**2)-lemac)/mac) # controlability
+    X_cg1.append(((x_ac - C_m_ac/C_L_a - C_L_h/C_L_a *(s*l_h/mac)*V_h_V**2)-lemac)/mac) # controlability
     X_cg2.append(((x_ac + C_L_alpha_h/C_L_alpha_a*(1-deps_dalpha)*(s*l_h/mac)*V_h_V**2 - SM)-lemac)/mac) #stability
     X_cg3.append(((x_ac + C_L_alpha_h/C_L_alpha_a*(1-deps_dalpha)*(s*l_h/mac)*V_h_V**2)-lemac)/mac) # neutral stability
 
 
 
-plt.plot(X_cg1,S_h_S)
+plt.plot(X_cg1,S_h_S, label="1")
 plt.plot(X_cg2,S_h_S)
 plt.plot(X_cg3,S_h_S)
 plt.xlabel("X_cg/mac")
 plt.ylabel("S_h/S")
+plt.legend()
 plt.show()
