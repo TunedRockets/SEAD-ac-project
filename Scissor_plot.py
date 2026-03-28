@@ -23,7 +23,7 @@ C_L_alpha_h = 1.5
 
 C_m_ac = -1
 deps_dalpha = 0.4
-SM = 0.1
+SM = 0.5
 
 S_h_S = [1,2,3,4]
 X_cg1 = []
@@ -39,9 +39,9 @@ for s in S_h_S:
 
 
 
-plt.plot(X_cg1,S_h_S, label="1")
-plt.plot(X_cg2,S_h_S)
-plt.plot(X_cg3,S_h_S)
+plt.plot(X_cg1,S_h_S, color='deeppink',label="Controlability")
+plt.plot(X_cg2,S_h_S, color='rebeccapurple', label='stability with safety margin')
+plt.plot(X_cg3,S_h_S, color='violet', label='stability without safety margin')
 plt.xlabel("X_cg/mac")
 plt.ylabel("S_h/S")
 plt.legend()
