@@ -82,25 +82,32 @@ for n in range(24):
 
 W_last = w_aisle_two[-1]
 x_last = x_aisle_two[-1]
-print(W_last, x_last)
+#print(W_last, x_last)
 
 x_fuel = (((W_fuel * (l_tank - lemac)) + (W_last * x_last)) / (W_fuel + W_last)) /mac
 W_final = W_last + W_fuel
 
-print(x_fuel, W_final)
+#Finding most aft and most forward cg
+min_cg = min(x_aisle)
+max_cg = max(x_window_two)
+print("min", min_cg, "max", max_cg)
+
+#print(x_fuel, W_final)
 plt.plot([x_forward, x_empty, x_aft, x_both, x_forward], [W_forward+W_empty, W_empty, W_aft+W_empty, W_both+W_empty, W_forward+W_empty], '-o', color='deeppink', label = 'Cargo')
 plt.plot(x_window, w_window, '-o', color = 'darkviolet', label = 'Window seats')
 plt.plot(x_window_two, w_window_two, '-o', color = 'darkviolet')
 plt.plot(x_aisle, w_aisle, '-o', color = 'violet', label ='Aisle seats')
 plt.plot(x_aisle_two, w_aisle_two,'-o', color = 'violet')
 plt.plot([x_last, x_fuel], [W_last, W_final], '-o', color='cyan', label = 'Fuel')
+plt.vlines(min_cg, W_empty, W_final, color = 'mediumvioletred', label = 'cg range')
+plt.vlines(min_cg-0.02, W_empty, W_final, color = 'rebeccapurple', label="cg range with safety margin")
+plt.vlines(max_cg, W_empty, W_final, color = 'mediumvioletred')
+plt.vlines(max_cg+0.02, W_empty, W_final, color = 'rebeccapurple')
+
 plt.title("Loading diagram")
-plt.ylabel("Weight")
-plt.xlabel("Cg [mac]")
+plt.ylabel("Weight [kg]")
+plt.xlabel("Cg [%mac]")
 plt.legend()
 plt.show()
 
-#Finding most aft and most forward cg
-min_cg = min(x_aisle)
-max_cg = max(x_window_two)
-print("min", min_cg, "max", max_cg)
+

@@ -1,5 +1,6 @@
 import numpy as np
 
+
 intom = 0.0254      #m/in
 
 #---------------------
@@ -23,6 +24,8 @@ wing_group_W = np.array([W_w, W_mg])
 #print("wing:", sum(wing_group_W))
 
 lemac = (900.257 - 144)*intom      #m
+mac = 3.48 #m
+
 #---------------------------------------
 # locations wrt nose for fuselage group
 #---------------------------------------
@@ -53,4 +56,3 @@ CG_fus = np.dot(fus_group_W, fus_group_l)/sum(fus_group_W)
 #print("CG fuselage:", CG_fus)
 
 CG = (np.dot(wing_group_W, (wing_group_l+lemac)) + np.dot(fus_group_W, fus_group_l))/(sum(wing_group_W)+sum(fus_group_W))
-#print(CG)
