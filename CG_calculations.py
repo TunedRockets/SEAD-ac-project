@@ -52,10 +52,13 @@ CG_wing = np.dot(wing_group_W, wing_group_l)/sum(wing_group_W)
 CG_fus = np.dot(fus_group_W, fus_group_l)/sum(fus_group_W)
 
 
-#print("CG wing:", CG_wing)
-#print("CG fuselage:", CG_fus)
+print("CG wing:", CG_wing)
+print("CG fuselage:", CG_fus)
 
 CG = (np.dot(wing_group_W, (wing_group_l+lemac)) + np.dot(fus_group_W, fus_group_l))/(sum(wing_group_W)+sum(fus_group_W))
+
+print(CG)
+
 
 
 #------------
