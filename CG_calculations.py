@@ -56,3 +56,48 @@ CG_fus = np.dot(fus_group_W, fus_group_l)/sum(fus_group_W)
 #print("CG fuselage:", CG_fus)
 
 CG = (np.dot(wing_group_W, (wing_group_l+lemac)) + np.dot(fus_group_W, fus_group_l))/(sum(wing_group_W)+sum(fus_group_W))
+
+
+#------------
+# Part 2
+# ----------
+
+'''Changes:
+- wing weight -9%
+- fuselage weight -7%
+- 2 battery packs added:
+    * 2025 kg in the most forward part of cargo hold, taking up 1300 L
+    * 2475 kg in the aftmost part of the aft cargo hold, for 1600L
+    * installation adds 4000 kg to weight (500 kg reused?)
+- 3 last pax rows removed
+- cargo distribution shifted by batteries (weight remains the same)
+- MTOW remains same, difference taken out of fuel load
+- Aspect increased by 25%
+- max CL increased by 20%
+- gear heightened by 30 cm
+'''
+# update weights:
+W_w *= (1-0.09)
+W_f *= (1-0.07)
+W_bf = 2025 # forward battery
+W_ba = 2475 # aft battery
+
+l_bf = 10.5 # TODO: not correct number, part 1 ppl fill in
+l_ba = 29.0 # TODO: ----||----
+
+fus_group_l = np.array([l_h,l_v,l_f,l_ng,l_c, l_p, l_bf, l_ba])
+
+fus_group_W = np.array([W_h, W_v, W_f, W_ng, W_c, W_p, W_bf, W_ba])
+wing_group_W = np.array([W_w, W_mg])
+
+CG_wing = np.dot(wing_group_W, wing_group_l)/sum(wing_group_W)
+CG_fus = np.dot(fus_group_W, fus_group_l)/sum(fus_group_W)
+
+
+#print("CG wing:", CG_wing)
+#print("CG fuselage:", CG_fus)
+
+CG_EXX = (np.dot(wing_group_W, (wing_group_l+lemac)) + np.dot(fus_group_W, fus_group_l))/(sum(wing_group_W)+sum(fus_group_W))
+
+# TODO: print values
+
