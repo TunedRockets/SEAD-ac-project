@@ -30,17 +30,18 @@ xacf = 0.26 - 1.8/Clah*bf*hf*lfn/(S*c) + 0.273/(1 + taper)*bf*cg*(b-bf)/(c**2*(b
 
 xacn = -0.25*1.3**2*(cgc.l_p-cgc.lemac)/(S*Clah)*2
 
-print(r"$V_c$&  470 kts\\")
-print(r"$V_s$&  140 kts\\")
-print(r"$\frac{V_h}{V}$& 0.85 \\")
-print(r"$C_{L_{\alpha,h}}$&", Clah, r"\\")
-print(r"$C_{L_{\alpha,w}}$ &", Claw, r"\\")
-print(r"$C_{L_{\alpha,f}}$&", Claf, r"\\")
-print(r"$\frac{d\varepsilon}{d\alpha}$ &", depda, r"\\")
-print(r"$x_{ac,w}$ &", 0.26, r"\\")     #from the graph in the slides
-print(r"$x_{ac,f}$ &", xacf, r"\\")
-print(r"$x_{ac,nacelle}$ &", xacn, r"\\")
-print(r"$C_{L_{max,h}}$ &\\")
-print(r"$\theta_{0,a-h}$ &")
+if __name__ == "__main__":
+    print(r"$V_c$&  470 kts\\")
+    print(r"$V_s$&  140 kts\\")
+    print(r"$\frac{V_h}{V}$& 0.85 \\")
+    print(r"$C_{L_{\alpha,h}}$&", Clah, r"\\")
+    print(r"$C_{L_{\alpha,w}}$ &", Claw, r"\\")
+    print(r"$C_{L_{\alpha,f}}$&", Claf, r"\\")
+    print(r"$\frac{d\varepsilon}{d\alpha}$ &", depda, r"\\")
+    print(r"$x_{ac,w}$ &", 0.26, r"\\")     #from the graph in the slides
+    print(r"$x_{ac,f}$ &", xacf, r"\\")
+    print(r"$x_{ac,nacelle}$ &", xacn, r"\\")
+    print(r"$C_{L_{max,h}}$ &\\")
+    print(r"$\theta_{0,a-h}$ &")
 
 
