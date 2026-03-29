@@ -85,8 +85,8 @@ W_f *= (1-0.07)
 W_bf = 2025 # forward battery
 W_ba = 2475 # aft battery
 
-l_bf = 10.5 # TODO: not correct number, part 1 ppl fill in
-l_ba = 29.0 # TODO: ----||----
+l_bf = 99999 # TODO: not correct number, part 1 ppl fill in
+l_ba = 99999 # TODO: ----||----
 
 fus_group_l = np.array([l_h,l_v,l_f,l_ng,l_c, l_p, l_bf, l_ba])
 
@@ -111,5 +111,5 @@ for i in range(len(fus_group_l)):
 
 names2 = ["Wing", "Main gear"]
 for i in range(len(wing_group_l)):
-    print(f"{names2[i]:15}\t {wing_group_W[i]:7.2f}\t {wing_group_l[i]:7.3f}\t {(wing_group_l[i]- lemac)/mac :6.3f}")
+    print(f"{names2[i]:15}\t {wing_group_W[i]:7.2f}\t {wing_group_l[i]+lemac:7.3f}\t {(wing_group_l[i])/mac :6.3f}")
 
