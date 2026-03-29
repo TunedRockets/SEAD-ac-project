@@ -16,7 +16,6 @@ W_ng = 0.008*EOW # nose landing gear weight
 W_p = 0.133*EOW # propulsion weight
 W_c = 0.023*EOW # cockpit weight
 # missing 8.8% of the EOW, does not affect cg apperantly
-
 fus_group_W = np.array([W_h, W_v, W_f, W_ng, W_c, W_p])
 wing_group_W = np.array([W_w, W_mg])
 
@@ -80,6 +79,7 @@ print(CG)
 - gear heightened by 30 cm
 '''
 # update weights:
+OEW_adjust = (-W_w*0.09 - W_f*0.07 +4000)
 W_w *= (1-0.09)
 W_f *= (1-0.07)
 W_bf = 2025 # forward battery
@@ -102,5 +102,14 @@ CG_fus = np.dot(fus_group_W, fus_group_l)/sum(fus_group_W)
 
 CG_EXX = (np.dot(wing_group_W, (wing_group_l+lemac)) + np.dot(fus_group_W, fus_group_l))/(sum(wing_group_W)+sum(fus_group_W))
 
-# TODO: print values
+print(f"\n\nNew CG: {CG_EXX:.3f}\t new OEW: {EOW-OEW_adjust:.2f}")
+print("CG table:")
+names = ["Horizontal tail", "vartical tail", "fuselage", "Nose gear", "Cockpit", "propulsion", "fore battery", "aft battery"]
+print("Name:\t\t weight:\t pos(from nose)\t pos(LEMAC)")
+for i in range(len(fus_group_l)):
+    print(f"{names[i]:15}\t {fus_group_W[i]:7.2f}\t {fus_group_l[i]:7.3f}\t {(fus_group_l[i]- lemac)/mac :6.3f}")
+
+names2 = ["Wing", "Main gear"]
+for i in range(len(wing_group_l)):
+    print(f"{names2[i]:15}\t {wing_group_W[i]:7.2f}\t {wing_group_l[i]:7.3f}\t {(wing_group_l[i]- lemac)/mac :6.3f}")
 
