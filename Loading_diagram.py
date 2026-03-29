@@ -2,11 +2,22 @@ from CG_calculations import CG, lemac
 import matplotlib.pyplot as plt
 import numpy as np
 
+
+part_2 = True
+
+
 W_pay = 11966 #kg
 W_empty = 23133
+
+if part_2:
+    W_empty = 20109.91
+    CG = 21.057 # TODO: UPDATE!!!
+
 mac = 3.48
 x_empty = (CG - lemac) /mac
 n_pas = 100
+if part_2:
+    n_pas -= 3 * 4 # 4 pax per row
 W_pas = 92 #kg
 
 #Cargo weights and lengths
@@ -17,16 +28,33 @@ l_forward = 10.5
 l_aft = 29.0
 W_cargo = n_pas*W_pas + W_aft + W_forward
 
+if part_2:
+    # l fore and aft should be changed after losing volume
+    pass #TODO
+
 l_tank = 29
 W_fuel = 5842
 
-
+if part_2:
+    # fuel decreased to keep MTOW the same
+    # since MTOW = OEW + fuel + pax + cargo + Batt, 
+    # net change is delta OEW delta pax
+    d_pax = - (3*4)*W_pas
+    d_OEW = -(23133 - 20109.91)
+    batt = 4000
+    d_fuel = -(d_pax + d_OEW + batt)
+    W_fuel += d_fuel
 
 #Loading diagram for cargo
 x_aft = ((((W_empty * CG) + (W_aft * l_aft)) / (W_empty + W_aft)) - lemac) / mac
 x_forward = ((((W_empty * CG) + (W_forward * l_forward)) / (W_empty + W_forward)) - lemac)/mac
 x_both = ((((W_empty * CG) + (W_forward * l_forward) + (W_aft * l_aft)) / (W_empty + W_forward + W_aft)) - lemac)/mac
 #print(x_aft, x_forward)
+
+
+if part_2:
+    pass #TODO: remove last three rows of pax
+    # (i don't quite understand the code underneath)
 
 
 #Passenger weights and lengths
@@ -91,6 +119,9 @@ W_final = W_last + W_fuel
 min_cg = min(x_aisle)
 max_cg = max(x_window_two)
 print("min", min_cg, "max", max_cg)
+
+
+
 
 if __name__ == "__main__":
     #print(x_fuel, W_final)
