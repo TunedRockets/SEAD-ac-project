@@ -130,8 +130,8 @@ def load_diagram(part_2:bool, plot:bool):
     if part_2:
         # find the OEW sans batteries:
         M_cg = W_empty * x_empty
-        l_bamac = l_ba / mac
-        l_bfmac = l_bf / mac
+        l_bamac = (l_ba -lemac)/ mac
+        l_bfmac = (l_bf -lemac)/ mac
         M_batt = l_bamac*W_ba + l_bfmac*W_bf
         M_wo_batt = M_cg-M_batt
         W_wo_batt =  W_empty - W_ba - W_bf
@@ -141,6 +141,7 @@ def load_diagram(part_2:bool, plot:bool):
         if part_2:
             plt.plot([x_wo_batt,x_empty],[W_wo_batt,W_empty], '--o', color="red", label='Battery Packs')
             print(f"OEW sans battery location: {x_wo_batt:.2f}")
+            print(f"Battery locations: fore:{l_bfmac:.2f}\taft: {l_bamac:.2f}")
 
         plt.plot([x_forward, x_empty, x_aft, x_both, x_forward], [W_forward+W_empty, W_empty, W_aft+W_empty, W_both+W_empty, W_forward+W_empty], '-o', color='deeppink', label = 'Cargo')
         plt.plot(x_window, w_window, '-o', color = 'darkviolet', label = 'Window seats')
