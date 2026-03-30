@@ -53,60 +53,63 @@ x_both = ((((W_empty * CG) + (W_forward * l_forward) + (W_aft * l_aft)) / (W_emp
 
 
 if part_2:
-    pass #TODO: remove last three rows of pax
-    # (i don't quite understand the code underneath)
-
+    rows = 21
+else:
+    rows = 24
 
 #Passenger weights and lengths
-l_1 = 6.84 - lemac # m
-x_window = [x_both,]
-w_window = [W_empty+W_both,]
-x_window_two = [x_both,]
+l_front = 6.84 - lemac # m (pax front seat)
+x_window = [x_both,] # array cg pos from window boarding
+w_window = [W_empty+W_both,] # array cg weight --||--
+x_window_two = [x_both,] # same but boarding backwards
 w_window_two = [W_empty+W_both,]
-M_n = (W_empty+W_both)*x_both 
+M_n = (W_empty+W_both)*x_both # cg moment (M_n / w = x_cg)
+W_n = (W_empty+W_both)
 # forward window
-for n in range(24):
-    l_n = l_1 + 0.8*n # 0.8 space per row
-    w_n = (W_empty+W_both) + W_pas*2*n
-    M_n = M_n + 2*W_pas*l_n
-    x_n = (M_n/w_n)
+for n in range(rows): # from front
+    l_n = l_front + 0.8*n # 0.8 space per row
+    W_n += W_pas*2 # add weight
+    M_n += 2*W_pas*l_n # add moment
+    x_n = (M_n/W_n) # new cg pos
     x_window.append(x_n)
-    w_window.append(w_n)
+    w_window.append(W_n)
 
 
-M_n = (W_empty+W_both)*x_both 
-l_n = l_n + 0.8
-for n in range(24):
-    l_n = l_n - 0.8 # 0.8 space per row
-    w_n = (W_empty+W_both) + W_pas*2*n
-    M_n = M_n + 2*W_pas*l_n
-    x_n = (M_n/w_n)
+M_n = (W_empty+W_both)*x_both # reset moment
+W_n = (W_empty+W_both)
+l_back = l_n # aftmost seat
+assert abs(l_back - (l_front + 0.8*(rows-1))) < 1e-8
+for n in range(rows): # from back
+    l_n = l_back - 0.8*n # 0.8 space per row
+    W_n += W_pas*2
+    M_n += 2*W_pas*l_n
+    x_n = (M_n/W_n)
     x_window_two.append(x_n)
-    w_window_two.append(w_n)
+    w_window_two.append(W_n)
 
-x_aisle = [x_window_two[-1],]
+x_aisle = [x_window_two[-1],] # start from end of prev
 w_aisle = [w_window_two[-1],]
 x_aisle_two = [x_window_two[-1],]
 w_aisle_two = [w_window_two[-1],]
-w_n_init = np.copy(w_n)
-M_n_init = np.copy(M_n)
-for n in range(24):
-    l_n = l_1 + 0.8*n # 0.8 space per row
-    w_n = w_n_init + W_pas*2*n
-    M_n = M_n + 2*W_pas*l_n
-    x_n = (M_n/w_n)
+w_n_init = W_n # weight/moment after window boarding
+M_n_init = M_n
+for n in range(rows):
+    l_n = l_front + 0.8*n # 0.8 space per row
+    W_n += W_pas*2
+    M_n += 2*W_pas*l_n
+    x_n = (M_n/W_n)
     x_aisle.append(x_n)
-    w_aisle.append(w_n)
+    w_aisle.append(W_n)
 
+W_n = w_n_init
 M_n = M_n_init
-l_n = l_n + 0.8
-for n in range(24):
-    l_n = l_n - 0.8 # 0.8 space per row
-    w_n = w_n_init + W_pas*2*n
-    M_n = M_n + 2*W_pas*l_n
-    x_n = (M_n/w_n)
+for n in range(rows):
+    l_n = l_back - 0.8*n # 0.8 space per row
+    W_n += W_pas*2
+    M_n += 2*W_pas*l_n
+    x_n = (M_n/W_n)
     x_aisle_two.append(x_n)
-    w_aisle_two.append(w_n)
+    w_aisle_two.append(W_n)
 
 W_last = w_aisle_two[-1]
 x_last = x_aisle_two[-1]
