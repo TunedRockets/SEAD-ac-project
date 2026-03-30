@@ -122,6 +122,7 @@ print(f"\n\nNew CG: {CG_EXX:.3f}\t new OEW: {EOW-OEW_adjust:.2f}")
 print("CG table:")
 names = ["Horizontal tail", "vartical tail", "fuselage", "Nose gear", "Cockpit", "propulsion", "fore battery", "aft battery"]
 print("Name:\t\t weight:\t pos(from nose)\t pos(LEMAC)")
+print(f"{"OEW":15}\t {EOW-OEW_adjust:7.2f}\t {CG_EXX:7.3f}\t {(CG_EXX - lemac)/mac:6.3f}")
 for i in range(len(fus_group_l)):
     print(f"{names[i]:15}\t {fus_group_W[i]:7.2f}\t {fus_group_l[i]:7.3f}\t {(fus_group_l[i]- lemac)/mac :6.3f}")
 
