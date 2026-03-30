@@ -20,7 +20,7 @@ n_pas = 100
 if part_2:
     n_pas -= 3 * 4 # 4 pax per row
     rows -= 3
-W_pas = 92 #kg
+W_pas = 84 #kg
 
 #Cargo weights and lengths
 W_aft = 1807
