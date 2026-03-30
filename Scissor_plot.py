@@ -1,7 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
-from CG_calculations import cg, lemac, l_h
-from Loading_diagram import mac
+from CG_calculations import lemac, l_h, mac
 import Calculating_constants as cc
 
 # all values are made up
