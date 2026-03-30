@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
-from CG_calculations import CG, lemac, l_h
+from CG_calculations import cg, lemac, l_h
 from Loading_diagram import mac
 import Calculating_constants as cc
 
