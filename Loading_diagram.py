@@ -58,10 +58,6 @@ def load_diagram(part_2:bool, plot:bool):
     #print(x_aft, x_forward)
 
 
-
-if part_2:
-    W_empty = 20109.91
-
     #Passenger weights and lengths
     l_front = 6.84 - lemac # m (pax front seat)
     x_window = [x_both,] # array cg pos from window boarding
