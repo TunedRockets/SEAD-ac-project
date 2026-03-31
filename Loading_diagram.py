@@ -59,7 +59,8 @@ def load_diagram(part_2:bool, plot:bool):
 
 
 
-        
+if part_2:
+    W_empty = 20109.91
 
     #Passenger weights and lengths
     l_front = 6.84 - lemac # m (pax front seat)
