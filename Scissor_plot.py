@@ -94,6 +94,20 @@ for s in S_h_S:
     X_cg2.append(((x_ac + Clah/Claw*(1-depda)*(s*l_h/mac)*V_h_V**2 - SM)))#-lemac)/mac) #stability
     X_cg3.append(((x_ac + Clah/Claw*(1-depda)*(s*l_h/mac)*V_h_V**2)))#-lemac)/mac) # neutral stability
 
+if __name__ == "__main__":
+    print(r"$V_c$&  470 kts\\")
+    print(r"$V_s$&  140 kts\\")
+    print(r"$\frac{V_h}{V}$& 0.85 \\")
+    print(r"$C_{L_{\alpha,h}}$&", Clah, r"\\")
+    print(r"$C_{L_{\alpha,w}}$ &", Claw, r"\\")
+    print(r"$C_{L_{\alpha,f}}$&", Claf, r"\\")
+    print(r"$\frac{d\varepsilon}{d\alpha}$ &", depda, r"\\")
+    print(r"$x_{ac,w}$ &", 0.26, r"\\")     #from the graph in the slides
+    print(r"$x_{ac,f}$ &", xacf, r"\\")
+    print(r"$x_{ac,nacelle}$ &", xacn, r"\\")
+    print(r"$C_{L_{max,h}}$ &",Clmax, r"\\")
+    print(r"$\theta_{0,a-h}$ &")
+
 
 if __name__ == "__main__":
     plt.plot(X_cg1,S_h_S, color='deeppink',label="Controlability")
