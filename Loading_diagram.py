@@ -11,7 +11,6 @@ W_empty = 23133
 
 if part_2:
     W_empty = 20109.91
-    CG = 21.057 # TODO: UPDATE!!!
 
 mac = 3.48
 x_empty = (CG - lemac) /mac
