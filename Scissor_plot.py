@@ -12,8 +12,7 @@ import Calculating_constants as cc
 x_ac = 0.25 #lemac + 0.25*mac
 W_cruise = 38000
 V_cruise = 242
-rho = 0.25
-C_L_a = W_cruise/(0.5*rho*V_cruise**2*cc.S)
+rho = 0.85
 #C_L_alpha_a = 1.5
 
 #tail
@@ -21,28 +20,32 @@ V_h_V = 0.85    # from slides
 S_h = 15.9
 x_ac_h = ((l_h + 0.25*4.04) -lemac)/mac
 l_h = x_ac_h - x_ac
-C_L_h = W_cruise/(0.5*rho*(V_h_V*V_cruise)**2*S_h)
+#C_L_h = W_cruise/(0.5*rho*V_h**2*S_h)
+C_L_h = -0.35*cc.Ah**(1/3)
+#C_L_a = W_cruise/(0.5*rho*V_cruise**2*cc.S)    
+#print(C_L_h, C_L_a)
 #C_L_alpha_h = 1.5
 
-cm0 = 0.3        # entirely made up
-flaps = 0.1       # also entirely made up, because the graph in the slides is incomprehensible
+cm0 = -0.1        # entirely made up
+flaps = -0.3       # also entirely made up, because the graph in the slides is incomprehensible
 lf = 39.1
 CL0 = 0.1       # again, entirely made up
-C_m_ac = cm0*(cc.A*(np.cos(cc.lamb)**2)/(cc.A + 2*np.cos(cc.lamb))) + flaps - 1.8*(1 - 2.5*cc.bf/lf)*np.pi*cc.bf*cc.hf*lf/(4*cc.S*mac)*CL0/cc.Clah
+#C_m_ac = cm0*(cc.A*(np.cos(cc.lamb)**2)/(cc.A + 2*np.cos(cc.lamb))) + flaps - 1.8*(1 - 2.5*cc.bf/lf)*np.pi*cc.bf*cc.hf*lf/(4*cc.S*mac)*CL0/cc.Claf
+C_m_ac = -0.6
 #deps_dalpha = 0.4
-SM = 0.5
+SM = 0.05
 
-S_h_S = [0, 0.25, 0.5, 0.75, 1]
+
+S_h_S = [0.05, 0.1, 0.15, 0.2, 0.3]
 X_cg1 = []
 X_cg2 = []
 X_cg3 = []
 
 
 for s in S_h_S:
-
-    X_cg1.append(x_ac - C_m_ac/C_L_a + C_L_h/C_L_a *(s*l_h/mac)*V_h_V**2)#-lemac)/mac) # controlability
-    X_cg2.append(((x_ac + cc.Clah/cc.Claw*(1-cc.depda)*(s*l_h/mac)*V_h_V**2 - SM)))#-lemac)/mac) #stability
-    X_cg3.append(((x_ac + cc.Clah/cc.Claw*(1-cc.depda)*(s*l_h/mac)*V_h_V**2)))#-lemac)/mac) # neutral stability
+    X_cg1.append(x_ac - C_m_ac/cc.Clmax + C_L_h/cc.Clmax*(s*l_h/mac)*V_h_V**2)#-lemac)/mac) # controlability 
+    X_cg2.append(((x_ac + cc.Clah/cc.Claf*(1-cc.depda)*(s*l_h/mac)*V_h_V**2 - SM)))#-lemac)/mac) #stability
+    X_cg3.append(((x_ac + cc.Clah/cc.Claf*(1-cc.depda)*(s*l_h/mac)*V_h_V**2)))#-lemac)/mac) # neutral stability
 
 
 if __name__ == "__main__":

@@ -6,7 +6,7 @@ from CG_calculations import mac, lemac
 part_2 = False
 
 
-Ah = 3.94       # bs number
+Ah = 3.94/2       # bs number
 beta = np.sqrt(1 - (241.78889)*0.85/343)
 lambh = 20*np.pi/180       # bs number
 eta = 0.9       # bs number
@@ -22,6 +22,7 @@ Claw = 2*np.pi*A/(2 + np.sqrt(4 + (A*beta/eta)**2*(1 + (np.tan(lamb)**2/beta**2)
 bf = 2.7    #m
 b = 26.2
 S = 77.4
+print(S**2/b)
 taper = 0.28        # actually for EMB 170 which is similar plane
 SnetS = 1 - (taper*(1-bf/b)+bf/b)*bf/b
 Claf = Claw*(1+2.15*bf/b)*SnetS + np.pi/2*bf**2/S
