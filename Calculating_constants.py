@@ -30,6 +30,12 @@ xacf = 0.26 - 1.8/Clah*bf*hf*lfn/(S*c) + 0.273/(1 + taper)*bf*cg*(b-bf)/(c**2*(b
 
 xacn = -0.25*1.3**2*(cgc.l_p-cgc.lemac)/(S*Clah)*2
 
+MTOW = 40995
+rho = 0.25
+v = 0.8*np.sqrt(1.4*222*287)
+Clmax = MTOW/(0.5*rho*v**2*S)
+
+
 if __name__ == "__main__":
     print(r"$V_c$&  470 kts\\")
     print(r"$V_s$&  140 kts\\")
@@ -41,7 +47,7 @@ if __name__ == "__main__":
     print(r"$x_{ac,w}$ &", 0.26, r"\\")     #from the graph in the slides
     print(r"$x_{ac,f}$ &", xacf, r"\\")
     print(r"$x_{ac,nacelle}$ &", xacn, r"\\")
-    print(r"$C_{L_{max,h}}$ &\\")
+    print(r"$C_{L_{max,h}}$ &",Clmax, r"\\")
     print(r"$\theta_{0,a-h}$ &")
 
 
