@@ -64,6 +64,15 @@ print(CG)
 # Part 2
 # ----------
 
+Cargo_l_forward = 10.5
+Cargo_l_aft = 29.0
+# made up: still need these TODO
+Cargo_fore_len = 7.28 # [m] (based on measuring drawing)
+Cargo_aft_len = 3.29 # [m] (so not the most accurate)
+Cargo_fore_vol= 50.2 * 1000 # [L]
+Cargo_aft_vol = 11.27 * 1000
+
+
 '''Changes:
 - wing weight -9%
 - fuselage weight -7%
@@ -83,10 +92,17 @@ OEW_adjust = (-W_w*0.09 - W_f*0.07 +4000)
 W_w *= (1-0.09)
 W_f *= (1-0.07)
 W_bf = 2025 # forward battery
+Vol_bf = 1300
 W_ba = 2475 # aft battery
+Vol_ba = 1600
+# find pos:
+aft_occupied_len = Cargo_aft_len * (Vol_ba/Cargo_aft_vol)
+fore_occupied_len = Cargo_fore_len * (Vol_bf/Cargo_fore_vol)
 
-l_bf = 99999 # TODO: not correct number, part 1 ppl fill in
-l_ba = 99999 # TODO: ----||----
+# cg in center of dispaced volume against the aft/fore wall
+l_ba = Cargo_l_aft + 0.5*Cargo_aft_len - 0.5*aft_occupied_len
+l_bf = Cargo_l_forward - 0.5*Cargo_fore_len + 0.5*fore_occupied_len
+
 
 fus_group_l = np.array([l_h,l_v,l_f,l_ng,l_c, l_p, l_bf, l_ba])
 
@@ -106,6 +122,7 @@ print(f"\n\nNew CG: {CG_EXX:.3f}\t new OEW: {EOW-OEW_adjust:.2f}")
 print("CG table:")
 names = ["Horizontal tail", "vartical tail", "fuselage", "Nose gear", "Cockpit", "propulsion", "fore battery", "aft battery"]
 print("Name:\t\t weight:\t pos(from nose)\t pos(LEMAC)")
+print(f"{"OEW":15}\t {EOW-OEW_adjust:7.2f}\t {CG_EXX:7.3f}\t {(CG_EXX - lemac)/mac:6.3f}")
 for i in range(len(fus_group_l)):
     print(f"{names[i]:15}\t {fus_group_W[i]:7.2f}\t {fus_group_l[i]:7.3f}\t {(fus_group_l[i]- lemac)/mac :6.3f}")
 
