@@ -1,5 +1,6 @@
 import numpy as np
 import CG_calculations as cgc
+from CG_calculations import mac, lemac
 
 
 part_2 = False
@@ -34,12 +35,14 @@ lfn = cgc.lemac
 c = cgc.mac
 cg = 2*taper*S/(b*(1+taper))
 xacf = 0.26 - 1.8/Clah*bf*hf*lfn/(S*c) + 0.273/(1 + taper)*bf*cg*(b-bf)/(c**2*(b+2.15*bf))*lamb         #assuming half chord and chorter-chord sweep is same because I cant find half-chord
+xacf = (xacf -lemac)/mac
 
 xacn = -0.25*1.3**2*(cgc.l_p-cgc.lemac)/(S*Clah)*2
+xacn = (xacn -lemac)/mac
 
-MTOW = 36968 #40995
+MTOW = 36968*9.81 #40995
 rho = 1.225 #0.25
-v = 69.45 #0.8*np.sqrt(1.4*222*287)
+v = 56 #0.8*np.sqrt(1.4*222*287)
 Clmax = MTOW/(0.5*rho*v**2*S)
 if part_2:
     Clmax *= 1.2
