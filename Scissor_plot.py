@@ -1,24 +1,21 @@
 import matplotlib.pyplot as plt
 import numpy as np
-from CG_calculations import lemac, l_h, mac
-
-
-# all values are made up
-part_2 = False
-
+from CG_calculations import lemac, l_h, mac, l_p
 import Calculating_constants as cc
 
+# all values are made up
+
 #wing
-x_ac = 0.25 #lemac + 0.25*mac
-W_cruise = 38000
+x_ac = 0.25 #lemac + 0.25*mac       # quarter-chord
+W_cruise = 38000*9.81
 V_cruise = 242
-rho = 0.85
+rho = 0.85      # pretty much made up
 #C_L_alpha_a = 1.5
 
 #tail
 V_h_V = 0.85    # from slides
 S_h = 15.9
-x_ac_h = ((l_h + 0.25*4.04) -lemac)/mac
+x_ac_h = (l_h -lemac)/mac
 l_h = x_ac_h - x_ac
 #C_L_h = W_cruise/(0.5*rho*V_h**2*S_h)
 C_L_h = -0.35*cc.Ah**(1/3)
@@ -29,11 +26,11 @@ C_L_h = -0.35*cc.Ah**(1/3)
 cm0 = -0.1        # entirely made up
 flaps = -0.3       # also entirely made up, because the graph in the slides is incomprehensible
 lf = 39.1
-CL0 = 0.1       # again, entirely made up
+CL0 = 0.04       # again, entirely made up
 #C_m_ac = cm0*(cc.A*(np.cos(cc.lamb)**2)/(cc.A + 2*np.cos(cc.lamb))) + flaps - 1.8*(1 - 2.5*cc.bf/lf)*np.pi*cc.bf*cc.hf*lf/(4*cc.S*mac)*CL0/cc.Claf
-C_m_ac = -0.6
+C_m_ac = -0.6       # graph in slides (I may have interpreted it wrong)
 #deps_dalpha = 0.4
-SM = 0.05
+SM = 0.05/mac
 
 
 S_h_S = [0.05, 0.1, 0.15, 0.2, 0.3]
@@ -43,10 +40,9 @@ X_cg3 = []
 
 
 for s in S_h_S:
-    X_cg1.append(x_ac - C_m_ac/cc.Clmax + C_L_h/cc.Clmax*(s*l_h/mac)*V_h_V**2)#-lemac)/mac) # controlability 
-    X_cg2.append(((x_ac + cc.Clah/cc.Claf*(1-cc.depda)*(s*l_h/mac)*V_h_V**2 - SM)))#-lemac)/mac) #stability
-    X_cg3.append(((x_ac + cc.Clah/cc.Claf*(1-cc.depda)*(s*l_h/mac)*V_h_V**2)))#-lemac)/mac) # neutral stability
-
+    X_cg1.append(x_ac - C_m_ac/cc.Clmax + C_L_h/cc.Clmax*(s*l_h)*V_h_V**2)#-lemac)/mac) # controlability 
+    X_cg2.append(((x_ac + cc.Clah/cc.Claf*(1-cc.depda)*(s*l_h)*V_h_V**2 - SM)))#-lemac)/mac) #stability
+    X_cg3.append(((x_ac + cc.Clah/cc.Claf*(1-cc.depda)*(s*l_h)*V_h_V**2)))#-lemac)/mac) # neutral stability
 
 if __name__ == "__main__":
     plt.plot(X_cg1,S_h_S, color='deeppink',label="Controlability")

@@ -1,8 +1,13 @@
 import numpy as np
 import CG_calculations as cgc
-from CG_calculations import mac, lemac
+from CG_calculations import mac, lemac, l_h
 
-
+x_ac = 0.25     #quarter-chord
+x_ac_h = ((l_h + 0.25*4.04) -lemac)/mac
+l_h = x_ac_h - x_ac
+##----------------------------------
+#DONT WORK HERE PLS, JUST GO IN SCOSSOR PLOT
+#--------------------------------------------
 part_2 = False
 
 
@@ -24,12 +29,18 @@ b = 26.2
 S = 77.4
 print(S**2/b)
 taper = 0.28        # actually for EMB 170 which is similar plane
-SnetS = 1 - (taper*(1-bf/b)+bf/b)*bf/b
+SnetS = (S-bf*mac)/S #1 - (taper*(1-bf/b)+bf/b)*bf/b
 Claf = Claw*(1+2.15*bf/b)*SnetS + np.pi/2*bf**2/S
 
-depda = 6.5*(np.sin(12*lamb))       # bs number, but based on Torenbeek 
+#depda = 6.5*(np.sin(12*lamb))       # bs number, but based on Torenbeek
+r = -l_h/(b/2)
+mtv = 5.592
 
-print(taper, beta*A)
+K1 = (0.1124+0.1265*lamb+0.1766*lamb**2)/r**2 + 0.1024/r +2
+K2 = 0.1124/r**2 +0.1024/r + 2
+depda = K1/K2 * ((r/(r**2+mtv**2)) * 0.4876/(np.sqrt(r**2+0.6319+mtv**2))+ (1+(r**2/(r**2 +0.7915 +5.0734*mtv**2))**0.3113)*(1-np.sqrt(mtv**2/(1+mtv**2))))*Claw/(np.pi*A)
+
+print(depda)
 
 hf = bf     #assuming circular fuselage 
 lfn = cgc.lemac
