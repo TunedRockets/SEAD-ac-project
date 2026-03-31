@@ -1,6 +1,10 @@
 import numpy as np
 import CG_calculations as cgc
 
+if not "part_2" in globals():
+    part_2 = True
+
+
 Ah = 3.94       # bs number
 beta = np.sqrt(1 - (241.78889)*0.85/343)
 lambh = 20*np.pi/180       # bs number
@@ -8,6 +12,9 @@ eta = 0.9       # bs number
 Clah = 2*np.pi*Ah/(2 + np.sqrt(4 + (Ah*beta/eta)**2*(1 + (np.tan(lambh)**2/beta**2))))
 
 A = 7.38
+if part_2: A *= 1.25
+
+
 lamb = 26.9*np.pi/180
 Claw = 2*np.pi*A/(2 + np.sqrt(4 + (A*beta/eta)**2*(1 + (np.tan(lamb)**2/beta**2))))
 
@@ -34,6 +41,8 @@ MTOW = 40995
 rho = 0.25
 v = 0.8*np.sqrt(1.4*222*287)
 Clmax = MTOW/(0.5*rho*v**2*S)
+if part_2:
+    Clmax *= 1.2
 
 
 if __name__ == "__main__":

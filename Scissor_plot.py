@@ -1,9 +1,12 @@
 import matplotlib.pyplot as plt
 import numpy as np
 from CG_calculations import lemac, l_h, mac
-import Calculating_constants as cc
+
 
 # all values are made up
+part_2 = True
+
+import Calculating_constants as cc
 
 #wing
 x_ac = lemac + 0.25*mac
