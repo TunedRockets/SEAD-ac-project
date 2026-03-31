@@ -38,7 +38,7 @@ def load_diagram(part_2:bool, plot:bool):
         l_forward += 0.5*fore_occupied_len
         # don't loose mass though
 
-    l_tank = 29
+    l_tank = 18.8
     W_fuel = 5842
 
     if part_2:

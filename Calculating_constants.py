@@ -1,8 +1,8 @@
 import numpy as np
 import CG_calculations as cgc
 
-if not "part_2" in globals():
-    part_2 = True
+
+part_2 = False
 
 
 Ah = 3.94       # bs number

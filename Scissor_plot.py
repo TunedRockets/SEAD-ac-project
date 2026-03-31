@@ -4,7 +4,7 @@ from CG_calculations import lemac, l_h, mac
 
 
 # all values are made up
-part_2 = True
+part_2 = False
 
 import Calculating_constants as cc
 
@@ -28,6 +28,7 @@ cm0 = 0.3        # entirely made up
 flaps = 0.1       # also entirely made up, because the graph in the slides is incomprehensible
 lf = 39.1
 CL0 = 0.1       # again, entirely made up
+print(f"{cc.A=}")
 C_m_ac = cm0*(cc.A*(np.cos(cc.lamb)**2)/(cc.A + 2*np.cos(cc.lamb))) + flaps - 1.8*(1 - 2.5*cc.bf/lf)*np.pi*cc.bf*cc.hf*lf/(4*cc.S*mac)*CL0/cc.Clah
 #deps_dalpha = 0.4
 SM = 0.5
@@ -52,5 +53,6 @@ if __name__ == "__main__":
     plt.axhline(y=S_h/S, color='r', linestyle='--', linewidth=2)
     plt.xlabel("X_cg/mac")
     plt.ylabel("S_h/S")
+    plt.grid()
     plt.legend()
     plt.show()
