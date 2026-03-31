@@ -18,7 +18,7 @@ C_L_a = W_cruise/(0.5*1*V_cruise**2*cc.S)
 #tail
 V_h_V = 0.85    # from slides
 S_h = 15.9
-S = 77.4  # confirm this #TODO
+S = 77.4
 x_ac_h = l_h + 0.25*4.04
 l_h = x_ac_h - x_ac
 C_L_h = W_cruise/(0.5*1*(V_h_V*V_cruise)**2*S_h)
@@ -50,7 +50,7 @@ if __name__ == "__main__":
     plt.plot(X_cg1,S_h_S, color='deeppink',label="Controlability")
     plt.plot(X_cg2,S_h_S, color='rebeccapurple', label='stability with safety margin')
     plt.plot(X_cg3,S_h_S, color='violet', label='stability without safety margin')
-    plt.axhline(y=S_h/S, color='r', linestyle='--', linewidth=2)
+    plt.axhline(y=S_h/S, color='r', linestyle='--', linewidth=2, label='actual Sh/S')
     plt.xlabel("X_cg/mac")
     plt.ylabel("S_h/S")
     plt.grid()

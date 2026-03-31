@@ -37,9 +37,9 @@ xacf = 0.26 - 1.8/Clah*bf*hf*lfn/(S*c) + 0.273/(1 + taper)*bf*cg*(b-bf)/(c**2*(b
 
 xacn = -0.25*1.3**2*(cgc.l_p-cgc.lemac)/(S*Clah)*2
 
-MTOW = 40995
-rho = 0.25
-v = 0.8*np.sqrt(1.4*222*287)
+MTOW = 36968 #40995
+rho = 1.225 #0.25
+v = 69.45 #0.8*np.sqrt(1.4*222*287)
 Clmax = MTOW/(0.5*rho*v**2*S)
 if part_2:
     Clmax *= 1.2
