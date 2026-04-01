@@ -38,7 +38,8 @@ def load_diagram(part_2:bool, plot:bool):
         l_forward += 0.5*fore_occupied_len
         # don't loose mass though
 
-    l_tank = 18.8
+    # l_tank = 18.8 # assume center of wing?
+    l_tank = lemac + 0.5*mac
     W_fuel = 5842
 
     if part_2:
@@ -59,7 +60,7 @@ def load_diagram(part_2:bool, plot:bool):
 
 
     #Passenger weights and lengths
-    l_front = 6.84 - lemac # m (pax front seat)
+    l_front = (6.84 - lemac)/mac # [mac] (pax front seat)
     x_window = [x_both,] # array cg pos from window boarding
     w_window = [W_empty+W_both,] # array cg weight --||--
     x_window_two = [x_both,] # same but boarding backwards
@@ -67,8 +68,9 @@ def load_diagram(part_2:bool, plot:bool):
     M_n = (W_empty+W_both)*x_both # cg moment (M_n / w = x_cg)
     W_n = (W_empty+W_both)
     # forward window
+    pax_row_space = 0.8/mac # [mac] 0.8 space per row
     for n in range(rows): # from front
-        l_n = l_front + 0.8*n # 0.8 space per row
+        l_n = l_front + pax_row_space*n 
         W_n += W_pas*2 # add weight
         M_n += 2*W_pas*l_n # add moment
         x_n = (M_n/W_n) # new cg pos
@@ -81,7 +83,7 @@ def load_diagram(part_2:bool, plot:bool):
     l_back = l_n # aftmost seat
     # assert abs(l_back - (l_front + 0.8*(rows-1))) < 1e-8
     for n in range(rows): # from back
-        l_n = l_back - 0.8*n # 0.8 space per row
+        l_n = l_back - pax_row_space*n # 0.8 space per row
         W_n += W_pas*2
         M_n += 2*W_pas*l_n
         x_n = (M_n/W_n)
@@ -95,7 +97,7 @@ def load_diagram(part_2:bool, plot:bool):
     w_n_init = W_n # weight/moment after window boarding
     M_n_init = M_n
     for n in range(rows):
-        l_n = l_front + 0.8*n # 0.8 space per row
+        l_n = l_front + pax_row_space*n # 0.8 space per row
         W_n += W_pas*2
         M_n += 2*W_pas*l_n
         x_n = (M_n/W_n)
@@ -105,7 +107,7 @@ def load_diagram(part_2:bool, plot:bool):
     W_n = w_n_init
     M_n = M_n_init
     for n in range(rows):
-        l_n = l_back - 0.8*n # 0.8 space per row
+        l_n = l_back - pax_row_space*n # 0.8 space per row
         W_n += W_pas*2
         M_n += 2*W_pas*l_n
         x_n = (M_n/W_n)
