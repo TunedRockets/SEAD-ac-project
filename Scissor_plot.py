@@ -28,12 +28,12 @@ flaps = -0.3       # also entirely made up, because the graph in the slides is i
 lf = 39.1
 CL0 = 0.04       # again, entirely made up
 #C_m_ac = cm0*(cc.A*(np.cos(cc.lamb)**2)/(cc.A + 2*np.cos(cc.lamb))) + flaps - 1.8*(1 - 2.5*cc.bf/lf)*np.pi*cc.bf*cc.hf*lf/(4*cc.S*mac)*CL0/cc.Claf
-C_m_ac = -0.6       # graph in slides (I may have interpreted it wrong)
+C_m_ac = -0.1       # graph in slides (I may have interpreted it wrong)
 #deps_dalpha = 0.4
 SM = 0.05/mac
 
 
-S_h_S = [0.05, 0.1, 0.15, 0.2, 0.3]
+S_h_S = [0, 0.05, 0.1, 0.15, 0.2, 0.3]
 X_cg1 = []
 X_cg2 = []
 X_cg3 = []
